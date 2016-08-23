@@ -8,12 +8,15 @@ private int comparisons = 0;
 
 	public Comparable[] findCommonElements(Object[] collections){
 		
+		//Initializing variables
 		int i = 0;
 		int j = 1;
 		
 		//Typecasting Object[] to Comparable[] and separating Arrays
 		Comparable[] queryArray = (Comparable[])collections[i];
 		Comparable[] testArray = (Comparable[])collections[j];
+		
+		
 		if(testArray.length < queryArray.length){
 			i = 1;
 			j = 0;
