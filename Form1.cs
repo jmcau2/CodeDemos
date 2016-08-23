@@ -21,6 +21,7 @@ namespace PeoriaTechnologyIntakeSheet
         
         public Form1()
         {
+            //Populating information
             loadConfiguration();
 
             InitializeComponent();
@@ -32,8 +33,11 @@ namespace PeoriaTechnologyIntakeSheet
             
         }
 
+        //This method loads the configuration data from an xml file, it loads up what database to use and the credentials for it
+        //using reflection
         private void loadConfiguration()
         {
+            
             try
             {
                 System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
@@ -65,6 +69,7 @@ namespace PeoriaTechnologyIntakeSheet
 
         private void intakeSheetButton_Click(object sender, EventArgs e)
         {
+            //need to load an empty intake form with empty strings if it's new
             intakeForm IntakeForm = new intakeForm(this, "", "", "", "", "", "", "", "", "", "", "", "", "");            
             IntakeForm.Show();
         }
@@ -94,7 +99,11 @@ namespace PeoriaTechnologyIntakeSheet
             
 
             public void getServiceCallsListing()
-            {           
+            {           //This will make a call to the database via a POST to a PHP page on the same server,
+                        //Basically the data is grabbed from the configuration file, the POST is sent with that info
+                        //The PHP script does the heavy lifting and accesses the MySQL DB and gets the data
+                        //from there, the data is returned in JSON format where it is deserialized into
+                        //objects of type ServiceCalls
                         ServiceCalls serviceCalls = JsonConvert.DeserializeObject<ServiceCalls>(DataBase.Get("get_service_call_info.php", Config.dbConnectString()));
                         if (serviceCalls.ServiceCall != null)
                         {
