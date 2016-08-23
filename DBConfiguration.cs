@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.Xml;
 using System.IO;
 
+//A lot of sensitive information ahs been removed.
+
+
 namespace PeoriaTechnologyIntakeSheet
 {
     public partial class DBConfiguration : Form
@@ -20,6 +23,7 @@ namespace PeoriaTechnologyIntakeSheet
             loadCurrentSettings();
         }
 
+    //Set to populate the text boxes in the configuration menu with the current settings.
         private void loadCurrentSettings()
         {
             dbURLTextBox.Text = Config.DBURL;
@@ -30,6 +34,7 @@ namespace PeoriaTechnologyIntakeSheet
 
         }
 
+        //Re-writes the current settings in the xml file.
         private void updateConfig_Click(object sender, EventArgs e)
         {
             Config.DBURL = dbURLTextBox.Text;
@@ -42,6 +47,7 @@ namespace PeoriaTechnologyIntakeSheet
             this.Close();
         }
 
+        //This is tha action that actually rewrites the xml file
         private void XmlUpdate(string dbURL, string dbToUse, string dbUser, string dbPassword, string phpFolder)
         {
             System.Reflection.Assembly a = System.Reflection.Assembly.GetExecutingAssembly();
@@ -55,11 +61,6 @@ namespace PeoriaTechnologyIntakeSheet
             doc.SelectSingleNode("/Root/Store/PHPFolder").InnerText = phpFolder;
             doc.Save("config.xml");
 
-        }
-
-        private void testConfigButton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Test");
         }
 
         private void dbURLTextBox_TextChanged(object sender, EventArgs e)
