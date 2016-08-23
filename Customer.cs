@@ -14,9 +14,11 @@ namespace PeoriaTechnologyIntakeSheet
     public class Customers
     {
         
+    //This list needs to have the JSON attribute to make sure it gets parsed correctly
     [JsonProperty("customerList")]
         public List<Customer> Customer { get; set; }
 
+    //need to be able to get the size later for parsing
     public int getSize()
     {
         return Customer.Count;
@@ -28,6 +30,7 @@ namespace PeoriaTechnologyIntakeSheet
 
     public class Customer 
     {
+        //Properties, no input restriction as this is for internal use only
         [JsonProperty(PropertyName = "ID")]
         public int ID { get; set; }
         [JsonProperty(PropertyName = "IncomingDate")]
