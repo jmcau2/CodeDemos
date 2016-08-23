@@ -56,6 +56,7 @@ namespace PeoriaTechnologyIntakeSheet
 
             try
             {
+                //UTF8 ENCODING ONLY, ASCII BAD, UTF8 GOOD (PHP and MySql don't like ASCII)
                 byte[] byteArray = Encoding.UTF8.GetBytes(dbCredentials);
                 HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(Config.PHPFolder + "/" + phpFile);
                 webRequest.Method = "POST";
